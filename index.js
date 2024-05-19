@@ -14,6 +14,7 @@ app.use(cors({
   }));
 
 app.use(express.json());
+
 app.use('/videos', videosRouter);
 
 app.get("/", function (req, res) {
