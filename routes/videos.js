@@ -96,4 +96,59 @@ router.get("/:videoId", async (req, res) => {
   }
 });
 
+router.post("/:videoId/comments", async (req, res) => {
+  try {
+    const videoId = req.params.videoId;
+    const { name, comment } = req.body;
+    const videos = await getVideos();
+    const foundVideo = videos.find((video) => video.id === videoId);
+
+    if (!foundVideo) {
+      return res.status(404).json({ error: "Video not found" });
+    }
+
+    const newComment = {
+      id: uuidv4(),
+      name,
+      comment,
+      timestamp: Date.now(),
+    };
+
+    foundVideo.comments.push(newComment);
+    await setVideos(videos);
+    res.status(201).json(newComment);
+  } catch (error) {
+    console.error("Error adding comment:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.delete("/:videoId/comments/:commentId", async (req, res) => {
+  try {
+    const videoId = req.params.videoId;
+    const commentId = req.params.commentId;
+    const videos = await getVideos();
+    const foundVideo = videos.find((video) => video.id === videoId);
+
+    if (!foundVideo) {
+      return res.status(404).json({ error: "Video not found" });
+    }
+
+    const commentIndex = foundVideo.comments.findIndex(
+      (comment) => comment.id === commentId
+    );
+
+    if (commentIndex === -1) {
+      return res.status(404).json({ error: "Comment not found" });
+    }
+
+    const deletedComment = foundVideo.comments.splice(commentIndex, 1)[0];
+    await setVideos(videos);
+    res.status(200).json(deletedComment);
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;

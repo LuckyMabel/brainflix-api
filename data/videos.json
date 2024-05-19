@@ -292,31 +292,5 @@
         "timestamp": 1701584262000
       }
     ]
-  },
-  {
-    "id": "bb867632-08b3-48a4-b469-3f6d5e8d4854",
-    "title": "Test TEST",
-    "description": "Awesome video.",
-    "image": "images/Upload-video-preview.jpg",
-    "channel": "Anonymous",
-    "views": 0,
-    "likes": 0,
-    "duration": "00:00",
-    "video": "",
-    "comments": [],
-    "timestamp": 1716084990309
-  },
-  {
-    "id": "ff3822b0-a798-4a97-baa5-662c4c7487f0",
-    "title": "Running Champion",
-    "description": "Best Runner of the World!",
-    "image": "images/Upload-video-preview.jpg",
-    "channel": "Anonymous",
-    "views": 0,
-    "likes": 0,
-    "duration": "00:00",
-    "video": "",
-    "comments": [],
-    "timestamp": 1716086921628
   }
 ]
